@@ -7,14 +7,14 @@ def notifyFailed(String stageName) {
 }
 
 pipeline {
-    agent { docker 'koalaman/shellcheck:v0.4.6' }   
+    agent any   
 
     stages {
         stage('shellcheck') {
             steps {
                 echo 'running shellcheck..'
                 bash '''#!/bin/bash
-                shellcheck -s sh -f checkstyle bootstrap-salt.sh | tee checkstyle.xml
+                #shellcheck -s sh -f checkstyle bootstrap-salt.sh | tee checkstyle.xml
                 '''
                 }
         }
