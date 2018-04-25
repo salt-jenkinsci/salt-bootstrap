@@ -13,15 +13,12 @@ pipeline {
     }
 agent { docker 'koalaman/shellcheck:v0.4.6' }    
        currentBuild.result = "SUCCESS"
-stages {
-    steps {
-      stage('shellcheck') {
+
+stage('shellcheck') {
         //Run the shell check utility and report on the output.
          print "Running shellcheck on bootstrap script for $ghpr"
          bash '''#!/bin/bash
                  shellcheck -s sh -f checkstyle bootstrap-salt.sh | tee checkstyle.xml 
          '''
        }
-    }
-  }
 }
