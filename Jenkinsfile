@@ -19,7 +19,9 @@ stages {
       stage('shellcheck') {
         //Run the shell check utility and report on the output.
          print "Running shellcheck on bootstrap script for $ghpr"
-         shellcheck -s sh -f checkstyle bootstrap-salt.sh | tee checkstyle.xml
+         bash '''#!/bin/bash
+                 shellcheck -s sh -f checkstyle bootstrap-salt.sh | tee checkstyle.xml 
+         '''
        }
     }
 
