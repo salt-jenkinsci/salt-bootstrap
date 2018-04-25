@@ -12,7 +12,6 @@ pipeline {
       STAGE1 = "shellcheck"
     }
 agent { docker 'koalaman/shellcheck:v0.4.6' }    
-       deleteDir()
        currentBuild.result = "SUCCESS"
 stages {
     steps {
@@ -24,14 +23,5 @@ stages {
          '''
        }
     }
-
-    post {
-            success {
-                notifySuccessful("$STAGE1")
-            }
-            failure {
-                notifyFailed("$STAGE1")
-            }
-        }
-    }
+  }
 }
